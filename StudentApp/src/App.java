@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import Controllers.EmploeeController;
+import Controllers.TeacherController;
 import Domen.Emploee;
 import Domen.Person;
 import Domen.PersonComparator;
@@ -11,6 +12,8 @@ import Domen.Student;
 import Domen.StudentGroup;
 import Domen.StudentsTeam;
 import Domen.Teacher;
+import Services.AverageAge;
+import Services.TeacherService;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -53,17 +56,17 @@ public class App {
         listGroup.add(group4582);
 
         StudentsTeam razrab = new StudentsTeam(listGroup, 45);
-        System.out.println(razrab);
-        for (StudentGroup group : razrab) {
-            System.out.println(group.getIdGroup());
+        // System.out.println(razrab);
+        // for (StudentGroup group : razrab) {
+        //     System.out.println(group.getIdGroup());
 
-        }
+        // }
 
-        System.out.println("=========================================================");
+        // System.out.println("=========================================================");
 
-        Collections.sort(razrab.getTeam());
+        // Collections.sort(razrab.getTeam());
 
-        System.out.println(razrab);
+        // System.out.println(razrab);
 
         // Collections.sort(group4580.getGroup());
 
@@ -78,22 +81,34 @@ public class App {
         // PersonComparator<Student> comS = new PersonComparator<Student>();
         // comS.compare(s1, s2);
 
-        // Teacher t1 = new Teacher("Иван", 25, "Docent");
-        // Teacher t2 = new Teacher("Игорь", 23, "Professor");
+        Teacher t1 = new Teacher("Иван", 25, "Docent",101);
+        Teacher t2 = new Teacher("Игорь", 23, "Professor",206);
 
-        // PersonComparator<Teacher> comT = new PersonComparator<Teacher>();
-        // comT.compare(t1, t2);
+        PersonComparator<Teacher> comT = new PersonComparator<Teacher>();
+        comT.compare(t1, t2);
 
-        // comS.compare(s1, t2);
-        // PersonComparator<Person> comP = new PersonComparator<Person>();
-        // comP.compare(s1, t2);
+       
+        PersonComparator<Person> comP = new PersonComparator<Person>();
+        comP.compare(s1, t2);
 
-        // Emploee e1 = new Emploee("Федорович", 60, "разнорабочим");
+        // Emploee e1 = new Emploee("Фёдорович", 60, "разнорабочим");
         // EmploeeController empControll = new EmploeeController();
         // EmploeeController.paySalary(e1);
         // EmploeeController.paySalary(s1);
         // empControll.paySalary(e1);
-        // empControll.paySalary(s1);
+
+        TeacherService tSer = new TeacherService();
+        tSer.create("Пётр", 33);
+        tSer.create("Павел", 43);
+        tSer.create("Марк", 35);
+        tSer.create("Павел", 23);
+        System.out.print(tSer);
+        System.out.println("=====================================================");
+        tSer.sortByFIOTeachLst();
+        System.out.print(tSer);
+
+        AverageAge aAT = new AverageAge<Teacher>();
+        aAT.averageAge(tSer.getAll());
 
     }
 }
