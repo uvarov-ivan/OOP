@@ -23,7 +23,7 @@ public class ModelList implements iGetModel {
         for (Student stud: students){
                        
             if(stud.getId() == id){
-                System.out.println(stud + "deleted!");
+                System.out.println(stud + " deleted!");
                 forDel = stud;
                 
                 availabilityId = false;
